@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <link rel="stylesheet" href="http://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="
+    sah382-UHRtZLI+pbxtHCW1t77BiL4ZtiqrqD80Kn4ZBNTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="icon" type="image/png"  href="icon.png">
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        /* Custom properties/variables  */
+        :root {
+        --main-white: #f0f0f0;
+        --secondary-white: #e1e1e4;
+        --main-blue: #0849e0e3;
+        --secondary-blue: #464cac;
+        --main-red: #be3144;
+        --main-gray: #303841;
+
+        /* font weight */
+        --thicker-font: 800;
+        --thick-font:600;
+        --medium-font:400;
+        --thinner-font:200;
+        --thinnest-font: 100;
+
+        /* font size */
+        --larger-font:4em;
+        --large-font:3em;
+        --medium-font:1.2em;
+        --small-font:.8em;
+        --smaller-font: .5em;
+      }
+      
+      /* Base reset */
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      
+      /* box-sizing and font sizing */
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+      
+      html {
+        box-sizing: border-box;
+      
+        /* Set font size for easy rem calculations
+         * default document font size = 16px, 1rem = 16px, 100% = 16px
+         * (100% / 16px) * 10 = 62.5%, 1rem = 10px, 62.5% = 10px
+        */
+        font-size: 80.5%;
+        scroll-behavior: smooth;
+      }
+      
+      /* A few media query to set some font sizes at different screen sizes.
+       * This helps automate a bit of responsiveness.
+       * The trick is to use the rem unit for size values, margin and padding.
+       * Because rem is relative to the document font size
+       * when we scale up or down the font size on the document
+       * it will affect all properties using rem units for the values.
+      */
+      
+      /* I am using the em unit for breakpoints
+       * The calculation is the following
+       * screen size divided by browser base font size
+       * As an example: a breakpoint at 980px
+       * 980px / 16px = 61.25em
+      */
+    
+    
+    
+    header{
+        z-index: 900;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:20px 100px ;
+        transition: 0.5s ease-in;
+    
+    }
+    
+    header .logotxt{
+        color: #fff;
+        font-size: 2em;
+        font-weight: var(--thicker-font) * 5%;
+        text-transform: uppercase;
+        text-decoration: none;
+        
+    
+    }
+
+    header .navigation{
+      position: relative;
+      
+    }
+
+    header .navigation .navigation-items li{
+      list-style: none;
+      display: inline-block;
+    }
+  
+    header .navigation .navigation-items li a{
+      position: relative;
+      color:#fff;
+      font-size: 1.359876em;
+      font-weight:var(--medium-font) ;
+      line-height: 30px;
+      text-decoration: none;
+      margin-left:30px ;
+      transition:0.5s ease ;
+    }
+    header .navigation .navigation-items li a:before,.navigation .navigation-items li ul li a:before{
+      content: '';
+      position: absolute;
+      background: linear-gradient(90deg,#333232,#be3144);
+      width: 0;
+      height: 3px;
+      bottom: 0;
+      left: 0;
+      transition:0.4s ease-in ;
+    }
+
+    header .navigation .navigation-items li a:hover:before{
+      width: 100%;
+    }
+    
+    header .navigation .navigation-items ul{
+          position: absolute;
+          top: 30px;
+          display: none;
+      
+    }
+
+    header .navigation .navigation-items li:hover > ul{
+      display: block;
+  }
+
+  .navigation .navigation-items ul li{
+    min-width: 265px;
+    float: none;
+    display: list-item;
+    position: relative;
+    background-color: var(--main-gray);
+}
+.navigation .navigation-items li ul li a:before{
+    
+      background: var(--main-white);
+      
+    }
+
+
+/* screen width 1040px */
+@media (max-width:1040px){
+    header {
+    padding: 12px 15px;
+  
+}
+}
+
+/* screen width 850px*/
+@media (max-width:850px){
+    header{
+        background: var(--main-gray);
+    }
+    header > .navigation {
+        display: none;
+    
+  
+}
+
+    header .navigation.active{
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(1 , 1, 1, 0.512);
+    }
+
+    header .navigation .navigation-items li a{
+        line-height:2;
+        letter-spacing: 1.5px;
+        font-weight: var(--thick-font);
+        color:var(--main-gray) ;
+        font-size: 1.4em;
+        margin: 20px;
+      
+    }
+
+    header .navigation .navigation-items{
+        background: #fff;
+        width: 600px;
+        max-width: 600px;
+        margin: 20px;
+        padding:30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 5px;
+        box-shadow: 0 5px 25px rgb(1 1 1/ 20%);
+
+        
+    }
+
+    header .navigation .navigation-items ul{
+          position: relative;
+          top: 10px;
+    
+    }
+     header .navigation .navigation-items li:hover > ul{
+      display: block;
+  }
+
+  
+
+    .navigation .navigation-items ul li{
+      display: list-item;
+                background-color: #598ee4;
+                padding:2px 3px; 
+                 line-height: 0.8;
+                float: right;
+                
+} 
+
+
+
+
+    #menu-btn{
+        background: url(menu.png)no-repeat;
+        background-size: 40px;
+        background-position: center;
+        width: 40px;
+        height: 40px;
+        cursor: progress;
+        transition: 0.3s ease;
+
+    }
+
+    #menu-btn.active{
+        z-index: 999;
+        background: url(close.png)no-repeat;
+        background-size: 35px;
+        background-position: center;
+        transition: 0.3s ease;
+}
+
+}
+
+
+    .welcome-section{
+        height: 100vh; 
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+        background: var(--main-gray);
+        overflow-y: hidden;
+        }
+
+        .img-slider{
+        position: relative;
+        width: 900px;
+        height: 100vh;
+        margin: 10px;
+        background: #1D212B;
+        }
+
+        .img-slider .slide{
+        z-index: 0;
+        position: absolute;
+        width: 100%;
+        clip-path: circle(0% at 0 50%);
+        }
+
+        .img-slider .slide.active{
+        clip-path: circle(150% at 0 50%);
+        transition: 2s;
+        transition-property: clip-path;
+        }
+
+        .img-slider .slide img{
+        z-index:1;
+        /* height: 600px; */
+        width: 100%;
+        border-radius: 5px;
+        }
+
+        .img-slider .slide .info{
+        position: absolute;
+        top: 18rem;
+        padding: 15px 30px;
+        }
+
+        .img-slider .slide .info h2{
+        color: #fff;
+        font-size: 48px;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 2px;
+        }
+
+        .img-slider .slide .info p{
+        color: #fff;
+        background: rgba(0, 0, 0, 0.1);
+        font-size: 18px;
+        width: 60%;
+        padding: 10px;
+        border-radius: 4px;
+        }
+
+        .img-slider .navigation{
+        z-index: 5;
+        position: absolute;
+        display: flex;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        }
+
+        .img-slider .navigation .btn{
+        background: rgba(255, 255, 255, 0.5);
+        width: 12px;
+        height: 12px;
+        margin: 10px;
+        border-radius: 50%;
+        cursor: pointer;
+        }
+
+        .img-slider .navigation .btn.active{
+        background: #2696E9;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 820px){
+        .img-slider{
+            width: 680px;
+            height: 100vh;
+        }
+
+        .img-slider .slide img{
+        height: 600px;
+        }
+
+        .img-slider .slide .info{
+            padding: 10px 25px;
+            top: 19rem;
+        }
+
+        .img-slider .slide .info h2{
+            font-size: 40px;
+        }
+
+        .img-slider .slide .info p{
+            width: 70%;
+            font-size: 15px;
+        }
+
+        .img-slider .navigation{
+            bottom: 25px;
+        }
+
+        .img-slider .navigation .btn{
+            width: 10px;
+            height: 10px;
+            margin: 8px;
+        }
+        }
+
+        @media (max-width: 620px){
+        .img-slider{
+            width: 450px;
+            height: 100vh;
+        }
+        .img-slider .slide img{
+        height: 550px;
+        }
+
+        .img-slider .slide .info{
+            padding: 10px 20px;
+            top: 20rem;
+        }
+
+        .img-slider .slide .info h2{
+            font-size: 35px;
+        }
+
+        .img-slider .slide .info p{
+            width: 80%;
+            font-size: 13px;
+        }
+
+        .img-slider .navigation{
+            bottom: 15px;
+        }
+
+        .img-slider .navigation .btn{
+            width: 8px;
+            height: 8px;
+            margin: 6px;
+        }
+        }
+
+        @media (max-width: 420px){
+        .img-slider{
+         
+            width: 390px;
+            height: 100vh;
+        }
+
+        .img-slider .slide img{
+        height: 500px;
+        }
+
+        .img-slider .slide .info{
+            padding: 5px 10px;
+            top: 23rem;
+        }
+
+        .img-slider .slide .info h2{
+            font-size: 30px;
+        }
+
+        .img-slider .slide .info p{
+            width: 90%;
+            font-size: 11px;
+        }
+
+        .img-slider .navigation{
+            bottom: 10px;
+        }
+        }
+
+        .about--us--wrapper{
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          background-color: rgba(0, 0, 0, 0.068);
+          line-height: 1.8;
+          width: 80%;
+          padding: 1rem;
+          margin: .8rem 8em 3em;          
+          height: fit-content;
+          /* box-shadow: 0 0 2px rgba(0, 0, 0, 0.5); */
+        }
+/* .about--us--content--text */
+        .about--us--content{
+          display: flex;
+          flex-direction: row-reverse;
+          background-color: var(--secondary-blue);
+          height: inherit;
+          width: 95%;
+          padding: 5px 10px ;
+          box-shadow: 5px 4px 2px rgba(0, 0, 0, 0.9);
+          border-top-left-radius:.8rem ;
+          border-bottom-right-radius:.8rem;
+        }
+        .about--us--content h2{
+          font-weight: var(--thicker-font);
+          color:#fff ;
+          font-size: var(--large-font);
+        }
+        .about--us--content p{
+          font-weight: var(--medium-font);
+          color:#fff ;
+          font-size: var(--small-font) + 1rem;
+        }
+
+        .about--us--content picture img{
+          width: 20em;
+          height: 20em;
+          border: none;
+          outline: 0;
+          border-radius: 50%;
+          text-align: center;
+        }
+        @media (max-width: 820px){
+
+          .about--us--wrapper{
+          margin: .8rem 6em 2.6em;
+          line-height: 1.7;
+          
+        }
+/* .about--us--content--text */
+        .about--us--content{
+          padding: 3px 8px ;
+        }
+        .about--us--content h2{
+          font-size:2rem;
+        }
+        .about--us--content p{
+          color:#fff ;
+          font-size: 16px;
+        }
+
+        .about--us--content picture img{
+          width: 17em;
+          height: 17em;
+          text-align: end;
+        }
+        }
+        @media (max-width: 680px){
+          .about--us--content picture img {
+          width: 16em;
+          height: 16em;
+          padding-top: 1em;
+      }       
+        
+        }
+        @media (max-width: 580px){
+          .about--us--wrapper{
+          line-height: 1.8;
+          width: 90%;
+          margin: .6rem 1.5em 2em;
+        }
+
+        .about--us--content{
+          display: flex;
+          flex-direction: column;
+          background-color: var(--secondary-blue);
+          padding: 3px 10px;
+        }
+
+        .about--us--content h2{
+          font-size: 1.8em;
+        }
+
+        .about--us--content p{
+          font-weight:var(--medium-font) ;
+          font-size: 16px;
+        }
+        .row-reverse{
+          flex-direction: column-reverse;
+        }
+        .about--us--content picture img{
+          width: 15em;
+          height: 15em;
+          border: 2px solid var(--secondary-white);
+          border-radius: 50%;
+          text-align: center;
+        }
+        }
+
+
+        /* Footer  from youtube ): */
+
+       
+footer .container{
+    line-height: 1.5;
+    max-width:  1170px;
+    /* background-color: rgb(212, 36, 36); */
+    margin: auto;
+}
+footer .row{
+    display: flex;
+    flex-wrap: wrap;
+}
+footer ul{
+    list-style: none;
+}
+.footer{
+    background-color: var(--main-gray);
+    padding: 70px 0;
+}
+.footer-col{
+    width: 25%;
+    padding: 0 15px;
+}
+.footer-col h4{
+    font-size: 18px;
+    color: var(--secondary-white);
+    text-transform: capitalize;
+    margin-bottom: 35px;
+    font-weight: 500;
+    position: relative;
+
+}
+.footer-col h4::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    background: linear-gradient(90deg,#be3144,#333232);
+    height: 2px;
+    box-sizing: border-box;
+    width: 50px;
+}
+.footer-col ul li :not(:last-child){
+    margin-bottom: 10px;
+}
+.footer-col ul li a{
+    font-size: 18px;
+    text-transform: capitalize;
+    color: var(--secondary-white);
+    text-decoration: none;
+    font-weight: 300;
+    display: block;
+ 
+    transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+    color: var(--secondary-white);
+    padding-left: 8px;
+}
+
+.footer-col .social-links a{
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 0 10px 10px 0;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    color: var(--secondary-white);
+    transition: all 0.5s ease;
+
+}
+.footer-col .social-links a:hover{
+    color: var(--main-gray);
+    background-color: var(--secondary-white);
+}
+/* Responsive */
+@media(max-width: 767px){
+    .footer-col{
+        width: 50%;
+        margin-bottom: 30px;
+    }
+
+}
+@media(max-width: 574px){
+    .footer-col{
+        width: 100%;
+        
+    }
+
+}
+footer section{
+  text-align: center;
+  margin-top: 2em;
+}
+      .copyright{
+        line-height: 2.6;
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: var(--thick-font);
+        color: var(--secondary-white);
+        letter-spacing: 1.8;
+        text-decoration: none;
+        
+      }
+/*  .wrapper{
+            display: grid;
+            grid-template-columns: 70% 30%;
+            grid-gap: 1em;
+            /* grid-column-gap: 1em;
+            grid-row-gap: 1em; }*/
+          
+    /* we'll start with mobile screens 
+    
+            800px
+            500px
+            396px */
+    </style>
+
+   
+</head>
+<body>
+    <!-- FRIST OF MANY LINES OF BEAUTIFUL AND READABLE CODES -->
+    <!-- LOGO AND NAVIGATION SECTION BOTH  DESKTOP AND MOBILE -->
+    <header>
+        <a href="#" class="logotxt">Edify Global</a>
+        <div id="menu-btn"></div>
+        <div class="navigation">
+            <ul class="navigation-items">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Courses <i class="fas fa-caret-down"></i></a>
+                <ul>
+                    <li><a href="#">Leadership</a></li>
+                    <li><a href="#">Teamwork</a></li>
+                    <li><a href="#">Public Speaking</a></li>
+                    <li><a href="#">Copy Writing</a></li>
+                    <li><a href="#">Comunication Skills</a></li>
+                    <li><a href="#">Time Management</a></li>
+                </ul></li><!-- dropdown -->
+                <li><a href="#">Store <i class="fas fa-caret-down"></i></a>
+                    <ul>
+                        <li><a href="#">Furnitures</a></li>
+                        <li><a href="#">Clothes</a></li>
+                        <li><a href="#">Utensils</a></li>
+                        <li><a href="https://fifa.com" target="_blank" rel="noopener noreferrer">Cosmetics</a></li>
+                    </ul></li><!-- dropdown -->
+                    
+                <li><a href="#">Programs <i class="fas fa-caret-down"></i></a>
+                    <ul>
+                    <li><a href="#">Bootcamps</a></li>
+                    <li><a href="#">Tour</a></li>
+                    <li><a href="#">Outreaches</a></li>
+                    <li><a href="#">EG Team</a></li>
+                    <li><a href="#">Volunteer</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Offices</a></li>
+                </ul></li>  <!-- dropdown -->
+                <li><a href="#">Testimonials</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+    </header>
+    <!-- WELCOME SECTION FEATURING *** SLIDING DIV*** ..) -->
+    <div class="welcome-section">
+
+
+        <div class="img-slider">
+            <div class="slide active">
+              <img src="1.jpg" alt="">
+              <div class="info">
+                <h2>Slide 01</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
+            </div>
+            <div class="slide">
+              <img src="2.jpg" alt="">
+              <div class="info">
+                <h2>Slide 02</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
+            </div>
+            <div class="slide">
+              <img src="3.jpg" alt="">
+              <div class="info">
+                <h2>Leadership and Soft Skills</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
+            </div>
+            <div class="slide">
+              <img src="4.jpg" alt="">
+              <div class="info">
+                <h2>Vision Bearer</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
+            </div>
+            <div class="slide">
+              <img src="5.jpg" alt="">
+              <div class="info">
+                <h2>Store Display</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
+            </div>
+            <div class="navigation">
+              <div class="btn active"></div>
+              <div class="btn"></div>
+              <div class="btn"></div>
+              <div class="btn"></div>
+              <div class="btn"></div>
+            </div>
+          </div>
+      
+          
+           </div>
+           <!-- ABOUT US SECTION  -->
+           <div class="about--us--wrapper">
+             <section class="about--us--content about--us--content--text">
+               <picture>
+               <img src="wp1.jpg" alt="nature" >
+             </picture>
+              <div><h2>Mission Statement</h2>
+              <p>Lorem ipsum dolor sit amet consectetur adipisic
+                ing elit. Ducimus error, excepturi 
+                nacorrupti autem modi quaerat alias dolore
+                mque nisi quisquam ipsam odio maxime quibusdam, sed rem explicabo! Facilis.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisic
+                  quaerat alias dolore
+                  mque nisi quisquam ipsam odio maxime quibusdam, sed rem explicabo! Facilis.</p></div></section>
+             <br>
+             <section class="about--us--content about--us--content--text row-reverse">
+             <div><h2>Our Vision</h2>
+             <p>Lorem ipsum dolor sit amet consectetur adipisic
+               ing elpti autem modi quaerat alias dolore
+               mque nisi quisquam ipsam odio maxime quibusdam, sed rem explicabo! Facilis.</p>
+               <p>Lorem ipsum dolor sit amet consectetur adipisic
+                 ing elit. Ducimus error, excepturuptates corrupti autem modi quaerat alias dolore
+                 mque nisi quisquam ipsam odio maxime quibusdam, sed rem explicabo! Facilis.</p></div>
+                 <picture>
+                  <img src="wp2.jpg" alt="nature" >
+                </picture></section>
+             <br>
+             <section class="about--us--content about--us--content--text"><picture>
+              <img src="wp4.jpg" alt="nature" >
+            </picture>
+             <div><h2>Our Vision Bearer</h2>
+             <p>Lorem ipsum dolor sit amet consectetur adipisic
+               ing elit. Ducimus error, excepturi 
+               nam, querat alias dolore
+               mque nisi quisquam ipsam odio maxime quibusdam, sed rem explicabo! Facilis.</p>
+               <p>Lorem ipsuautem modi quaerat alias dolore
+                 mque nisi quisquam ipsam odio maxime quibusdam, sed rem explicabo! Facilis.</p></div></section>
+           </div>
+           <!-- Footer -->
+           <!-- <footer id="footer">
+             <div class="inner">
+               <ul class="icons">
+                 <li><a href="http://" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                 <li><a href="http://" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                 <li><a href="http://" class="icon fa-telegram"><span class="label">Telegram</span></a></li>
+                 <li><a href="http://" class="icon fa-youtube"><span class="label">Youtube</span></a></li>
+
+                 </ul>
+
+             </div> -->
+             <footer class="footer">
+              <div class="container">
+                  <div class="row">
+                      <div class="footer-col">
+                          <h4>Organization</h4>
+                          <ul>
+                              <li><a href="#">About us</a></li>
+                              <li><a href="#">Our services</a></li>
+                              <li><a href="#">Privacy Policy</a></li>
+                              <li><a href="#">Affiliate Program</a></li>
+                          </ul>
+                      </div>
+                      <div class="footer-col">
+                          <h4>Get help</h4>
+                          <ul>
+                              <li><a href="#">FAQ</a></li>
+                              <li><a href="#">Shipping</a></li>
+                              <li><a href="#">returns</a></li>
+                              <li><a href="#">order status</a></li>
+                              <li><a href="#">payment options</a></li>
+                          </ul>
+                      </div><div class="footer-col">
+                          <h4>Online shop</h4>
+                          <ul>
+                              <li><a href="#">mugs</a></li>
+                              <li><a href="#">bag</a></li>
+                              <li><a href="#">shoes</a></li>
+                              <li><a href="#">dress</a></li>
+                          </ul>
+                      </div>
+                      <div class="footer-col">
+                          <h4>follow us</h4>
+                          <div class="social-links">
+      
+                              <a href="#"><i class="fab fa-facebook-f"></i></a>
+                              <a href="#"><i class="fab fa-twitter"></i></a>
+                              <a href="#"><i class="fab fa-telegram"></i></a>
+                              <a href="#"><i class="fab fa-youtube"></i></a>
+                          </div>
+                      </div>
+                  </div>
+                  <section><a class="copyright">&copy; EDIFYGLOBAL.ORG 2022 <a href=""></a></a></section>
+              </div>
+          </footer>
+           </footer>
+           <script type="text/javascript">
+          var slides = document.querySelectorAll('.slide');
+          var btns = document.querySelectorAll('.btn');
+          let currentSlide = 1;
+      
+          // Javascript for image slider manual navigation
+          var manualNav = function(manual){
+            slides.forEach((slide) => {
+              slide.classList.remove('active');
+      
+              btns.forEach((btn) => {
+                btn.classList.remove('active');
+              });
+            });
+      
+            slides[manual].classList.add('active');
+            btns[manual].classList.add('active');
+          }
+      
+          btns.forEach((btn, i) => {
+            btn.addEventListener("click", () => {
+              manualNav(i);
+              currentSlide = i;
+            });
+          });
+      
+          // Javascript for image slider autoplay navigation
+          var repeat = function(activeClass){
+            let active = document.getElementsByClassName('active');
+            let i = 1;
+      
+            var repeater = () => {
+              setTimeout(function(){
+                [...active].forEach((activeSlide) => {
+                  activeSlide.classList.remove('active');
+                });
+      
+              slides[i].classList.add('active');
+              btns[i].classList.add('active');
+              i++;
+      
+              if(slides.length == i){
+                i = 0;
+              }
+              if(i >= slides.length){
+                return;
+              }
+              repeater();
+            }, 10000);
+            }
+            repeater();
+          }
+          repeat();
+          </script>   
+    <script type="text/javascript">
+        var counter = 1;
+        setInterval(function(){
+            document.getElementById('radio' + counter).checked = true;
+            counter++;
+            if(counter > 4){
+                counter = 1;
+            }
+        },5000);
+       
+    </script>
+    <script>
+        //javascript of responsive menu
+        const menuBtn = document.querySelector("#menu-btn");
+        const navigation = document.querySelector(".navigation");
+
+        menuBtn.addEventListener("click", () => {
+            menuBtn.classList.toggle("active");
+            navigation.classList.toggle("active");
+
+        }); 
+    </script>
+    
+</body>
+
+</html>
